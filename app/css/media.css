@@ -1,0 +1,5 @@
+@media screen and (max-width: 767px) {
+  .puzzle-sector__title, .puzzle-circle__title {
+    font-size: 1.3rem; }
+  .puzzle-sector__desc, .puzzle-circle__desc {
+    font: 400 .6rem sans-serif; } }

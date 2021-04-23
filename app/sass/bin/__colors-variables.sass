@@ -1,0 +1,33 @@
+//-----Primary Color-------------
+$primary-hue: 235
+$primary-saturation: 18%
+$primary-lightness: 36%
+
+//-----Secondary Color-------------
+$second-hue: 165
+$second-saturation: 56%
+$second-lightness: 69%
+
+//-----Dark Color-------------
+$dark-hue: 0
+$dark-saturation: 0%
+$dark-lightness: 13%
+
+//-----Light Color-------------
+$light-hue: 4
+$light-saturation: 19%
+$light-lightness: 84%
+
+
+//-----This set used in IE11----
+
+$--color--primary: hsla($primary-hue, $primary-saturation, $primary-lightness, 1)
+$--color--second: hsla($second-hue, $second-saturation, $second-lightness, 1)
+$--color--dark: hsla($dark-hue, $dark-saturation, $dark-lightness, 1)
+$--color--light: hsla($light-hue, $light-saturation, $light-lightness, 1)
+$--color--page-bg: adjust_color($--color--light, $saturation: -5%, $lightness: 9%, $alpha: 1)
+$--color--hover: adjust_color($--color--second, $saturation: -19%, $lightness: -32%, $alpha: 1)
+$--color--link: adjust_color($--color--second, $saturation: -4%, $lightness: -22%, $alpha: 1)
+$--color--link--visited: adjust_color($--color--second, $lightness: 30%, $alpha: 1)
+
+$--color--mobile--menu--list: adjust_color($--color--primary, $alpha: .82)

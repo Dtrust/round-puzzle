@@ -1,0 +1,46 @@
+mixin picture(imageClass, imageName, imageAlt)
+	picture
+		source(srcset='assets/img/'+imageName+'.jpg 1x, assets/img/'+imageName+'@2x.jpg 2x', media='(max-width: 575px)')
+		source(srcset='assets/img/'+imageName+'.webp 1x, assets/img/'+imageName+'@2x.webp 2x', media='(max-width: 575px)')
+		source(type='image/webp' srcset='assets/img/'+imageName+'.webp 1x, assets/img/'+imageName+'@2x.webp 2x')
+		img(class= imageClass src='assets/img/'+imageName+'.jpg' srcset='assets/img/'+imageName+'.jpg 1x, assets/img/'+imageName+'@2x.jpg 2x' alt= imageAlt)
+
+
+mixin socialLinks
+	ul.social
+		-
+			let socialLinks = [
+				{cssClass : 'facebook', svgLink: '#facebook', target : 'https://www.facebook.com/', name : 'Facebook'},
+				{cssClass : 'instagram', svgLink: '#instagram', target : 'https://www.instagram.com/', name : 'Instagram'},
+				{cssClass : 'telegram', svgLink: '#telegram', target : 'https://www.telegram.com/', name : 'Telegram'},
+				{cssClass : 'twitter', svgLink: '#twitter', target : 'https://www.twitter.com/', name : 'Twitter'},
+				{cssClass : 'viber', svgLink: '#viber', target : 'https://www.viber.com/', name : 'Viber'},
+			]
+		each item in socialLinks
+			li.social-item
+				a.social-link(href= item.target target='_blank' title= item.name)
+					span.visually-hidden= item.name
+					svg.social-icon(class= 'icon-' + item.cssClass)(width='30' height='30')
+						use(xlink:href='assets/img/icons.svg' + item.svgLink + '-icon')
+
+
+mixin menuItems(menuClass)
+	ul(class= menuClass + '-nav__list')
+		-
+			let menuItems = [
+				{link : '#', name : 'Item1'},
+				{link : '#', name : 'Item2'},
+				{link : '#', name : 'Item3'},
+				{link : '#', name : 'Item4'},
+			]
+		each item in menuItems
+			li(class= menuClass + '-nav__item')
+				a.nav-item__link(href= item.link title= item.name)
+					span.nav-item__title= item.name
+
+
+mixin burger
+	button.nav-btn.burger(aria-label='menu')
+		span.burger-line.nav-btn__top
+		span.burger-line.nav-btn__middle
+		span.burger-line.nav-btn__bottom

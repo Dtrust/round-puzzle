@@ -1,0 +1,62 @@
+@import __colors-variables
+//----------------------------------------------------
+
+$-modal-box-shadow: 0 14px 37px rgba(33, 33, 33, .7)
+$-font-family: 'Roboto', sans-serif
+
+//----------------------------------------------------
+
+\:root, [data-theme="default"]
+    @include fluid-type(font-size, $minScreen, $maxScreen, $minFont, $maxFont)
+    --color-main: 234
+    @include defineColorHSL(--color-primary, $primary-hue, $primary-saturation, $primary-lightness)
+    @include defineColorHSL(--color-second, $second-hue, $second-saturation, $second-lightness)
+    @include defineColorHSL(--color-dark, $dark-hue, $dark-saturation, $dark-lightness)
+    @include defineColorHSL(--color-light, $light-hue, $light-saturation, $light-lightness)
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    transition: all 0.75s ease-out
+    &::before,
+    &::after
+        box-sizing: border-box
+    &::selection
+        background: hsla(var(--color-second-h), var(--color-second-s), var(--color-second-l), .8)
+
+html
+    position: relative
+    scrollbar-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 1) transparent
+    scrollbar-width: thin
+
+body
+    font-family: $-font-family
+    color: hsla(var(--color-dark-h), var(--color-dark-s), var(--color-dark-l), 1)
+    background: linear-gradient(28deg, hsla(199, 85%, 11%, 1), hsla(197, 55%, 50%, 1))
+    line-height: 1.2
+    &::-webkit-scrollbar
+        width: 6px
+    &::-webkit-scrollbar-track
+        -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, .2) inset
+        background-color: transparent
+    &::-webkit-scrollbar-thumb
+        border-radius: 5px
+        background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 1)
+
+main
+    overflow: hidden
+
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden
+    position: absolute
+    width: 1px
+    height: 1px
+    margin: -1px
+    border: 0
+    padding: 0
+    white-space: nowrap
+    clip-path: inset(100%)
+    clip: rect(0 0 0 0)
+    overflow: hidden

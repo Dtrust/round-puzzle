@@ -1,0 +1,151 @@
+@mixin resp($class) {
+  @if $class == xxxs {
+    @media (max-width: 350px) { @content; }
+  }
+  @if $class == xxs {
+    @media (max-width: 491px) { @content; }
+  }
+  @else if $class == xs {
+    @media (max-width: 575px) { @content; }
+  }
+  @else if $class == sm {
+    @media (max-width: 767px) { @content; }
+  }
+  @else if $class == lg {
+    @media (max-width: 991px) { @content; }
+  }
+  @else if $class == xl {
+    @media (max-width: 1200px) { @content; }
+  }
+}
+
+@mixin defineColorHSL($color, $hue, $saturation, $lightness){
+  #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");
+  #{$color}-h: #{$hue};
+  #{$color}-s: #{$saturation};
+  #{$color}-l: #{$lightness};
+}
+
+$baseline: 1.5rem;
+
+$minScreen: 20rem;
+$maxScreen: 50rem;
+$minFont: 1.1rem;
+$maxFont: 1.8rem;
+
+$h1: 2rem;
+$h2: 1.8rem;
+$h3: 1.55rem;
+$h4: 1.4rem;
+$h5: 1.1rem;
+$p: .4rem;
+$small: .5rem;
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  & {
+    @each $property in $properties {
+      #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+      @each $property in $properties {
+        #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+    }
+
+    @media screen and (min-width: $max-vw) {
+      @each $property in $properties {
+        #{$property}: $max-value;
+      }
+    }
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// IE Only BEGIN
+
+@mixin ie-only {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin ie-only--mobile {
+  @media screen and (max-width: 575px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+// IE Only END
+
+// Placeholder BEGIN
+
+@mixin placeholdersFont {
+  font-family: $-font-family;
+  font-size: $small;
+  @content;
+}
+@mixin placeholdersFontTranparent {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  @content;
+}
+// Placeholder END
+
+// Temporary Vision BEGIN
+
+@mixin temp-red {
+  background: rgba(255, 0, 0, .12);
+  border: 1px dashed red;
+}
+
+@mixin temp-green {
+  background: rgba(0, 128, 0, .31);
+  border: 1px dashed green;
+}
+
+@mixin temp-blue {
+  background: rgba(0, 0, 255, .26);
+  border: 1px dashed blue;
+}
+
+// Temporary Vision END
+
+@mixin navMobileBtn {
+  height: .85rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: 0;
+  &:hover {
+    background: none
+  }
+  @content;
+}
+
+@mixin navMobileLine {
+  width: 1.2rem;
+  height: .1rem;
+  min-height: 3px;
+  margin: 0;
+  display: block;
+  font-size: 0;
+  background: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 1);
+  border-radius: .5em;
+  -webkit-transition: all .5s cubic-bezier(.77,.2,.05,1);
+  transition: all .5s cubic-bezier(.77,.2,.05,1);
+  @content;
+}
+
+@mixin flex {
+  display: flex;
+  align-items: center;
+  @content;
+}
+

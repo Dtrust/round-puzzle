@@ -1,0 +1,15 @@
+block variables
+
+doctype html
+html(lang= lang)
+	head
+		block head
+		include ../components/head
+	body
+		include ../components/header
+		main
+			block content
+		include ../components/footer
+		block controls
+		script(src="js/script.bundle.js")
+		block script
