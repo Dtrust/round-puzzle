@@ -225,3 +225,12 @@ exports.default = series(
 	jsCompiling,
 	watchProject,
 );
+
+//GitHub Pages Upload
+function deploy(cb) {
+	return src(`./${baseDir}/**/**/*`)
+		.pipe(ghPages());
+	cb();
+}
+
+exports.deploy = deploy;
